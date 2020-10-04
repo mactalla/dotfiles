@@ -3,6 +3,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+DEFAULT_USER=`whoami`
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
