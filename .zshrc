@@ -149,3 +149,5 @@ function drun() {
     docker run --rm -it -v ${HOME}/.ccache:/root/.ccache -v ${HOME}/src/${1}:${HOME}/src/${1} -w ${HOME}/src/${1}/build/${2} ${1}-${2} bash -c "${cmd}"
 }
 
+[[ $SSH_AGENT_PID ]] || eval `ssh-agent`
+
