@@ -1,3 +1,5 @@
+[[ -e ~/.zshrc.local ]] && source ~/.zshrc.local
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -145,4 +147,3 @@ function drun() {
     docker run --rm -it -v ${HOME}/.ccache:/root/.ccache -v ${HOME}/src/${1}:${HOME}/src/${1} -w ${HOME}/src/${1}/build/${2} ${1}-${2} bash -c "${cmd}"
 }
 
-[[ -e ~/.zshrc.local ]] && source ~/.zshrc.local
