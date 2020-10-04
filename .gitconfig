@@ -1,0 +1,71 @@
+[user]
+    # These values are set in ~/.gitconfig.local
+[include]
+    path = ~/.gitconfig.local
+[push]
+	default = simple
+    recurseSubmodules = check
+[pull]
+    ff = only
+[alias]
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lols = log --graph --decorate --pretty=oneline --abbrev-commit --shortstat
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lolas = log --graph --decorate --pretty=oneline --abbrev-commit --all --shortstat
+    first-push = "!sh -c 'br=$(git symbolic-ref --short HEAD) && git push -u origin ${br}:${br}'"
+    ls = log --pretty=format:%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn] --graph --decorate --date=short -n 15
+    lsl = log --pretty=format:%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn] --graph --decorate --date=short
+    ll = log --pretty=format:%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn] --decorate --numstat --date=local
+    prunebranches = !git branch --merged master | grep -v " master" | xargs -n1 git branch -d
+    # Graph current working branch
+    # Line 1  : short hash, date, relative date, branch/tag
+    # Line 2  : first commit line (subject), author
+    # Line 3-n: commit body
+    graph = log \
+            --date=local \
+            --graph \
+            --pretty=format:'%C(blue)%h%C(reset) - %C(cyan)%aD %C(green)(%ar)%C(red)%d%n\
+%C(white)%w(120,10,0)%s %C(reset)- %C(green)%an %n\
+%C(reset)%w(82,10,10)%b%C(reset)' --abbrev-commit
+    # Graph current working branch
+    # Line 1  : short hash, relative date, first commit line (subject), author, branch/tag
+    gshort = log \
+            --date=local \
+            --graph \
+            --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(white) %s %C(reset)- %C(green)%an %C(red)%d' --abbrev-commit
+
+    # Graph *ALL* branches
+    # Line 1  : short hash, relative date, first commit line (subject), author, branch/tag
+    gshortall = log \
+            --date=local \
+            --graph \
+            --all \
+            --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(white) %s %C(reset)- %C(green)%an %C(red)%d' --abbrev-commit
+	whatadded = log --all --follow --diff-filter=A
+    bfg = "!java -jar ${HOME}/bin/bfg.jar"
+[fetch]
+    prune = true
+[rebase]
+    autosquash = true
+
+[core]
+	pager = less -i
+	excludesfile = ~/.gitignore
+[filter "clang-format-6.0"]
+	clean = clang-format-6.0 -style=file -fallback-style=none -assume-filename=%f
+[filter "clang-format-10"]
+	clean = clang-format-10 -style=file -fallback-style=none -assume-filename=%f
+[filter "clang-format-11"]
+	clean = clang-format-11 -style=file -fallback-style=none -assume-filename=%f
+[rebase]
+	autosquash = true
+[diff]
+	submodule = diff
+[merge]
+	renameLimit = 0
+	renormalize = true
+    ff = true
+[submodule]
+#	recurse = true
+[color]
+	ui = auto
