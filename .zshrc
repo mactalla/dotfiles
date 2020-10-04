@@ -92,8 +92,11 @@ POWERLEVEL9K_DIR_HOME_BACKGROUND='deepskyblue4'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='white'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='deepskyblue4'
 
-source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -e /usr/share/powerlevel9k/powerlevel9k.zsh-theme ]] && source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
+[[ -e /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme ]] && source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+
+[[ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -e /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 function asan() {
     $@ 2>&1 | asan_symbolize-6.0 -d
