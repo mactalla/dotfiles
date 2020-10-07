@@ -112,6 +112,7 @@ function asan38() {
 #export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
 export CTEST_OUTPUT_ON_FAILURE=true
 export CMAKE_GENERATOR=Ninja
+[[ -d /Applications ]] && export CMAKE_GENERATOR=Xcode
 
 alias please='sudo $(fc -ln -1)'
 
