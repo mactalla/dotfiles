@@ -91,10 +91,24 @@ export EDITOR='/usr/bin/vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+POWERLEVEL9K_MODE='nerdfont-complete'
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs)
+
+if type lsb_release > /dev/null && [[ $(lsb_release -i) =~ "Ubuntu" ]]; then
+    POWERLEVEL9K_OS_ICON_FOREGROUND=202
+fi
+
 POWERLEVEL9K_DIR_HOME_FOREGROUND='white'
 POWERLEVEL9K_DIR_HOME_BACKGROUND='deepskyblue4'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='white'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='deepskyblue4'
+#POWERLEVEL9K_VCS_GIT_HOOKS="(vcs-detect-changes git-untracked git-aheadbehind git-stash git-remotebranch git-tagname)"
+POWERLEVEL9K_VCS_GIT_HOOKS=(vcs-detect-changes git-untracked git-aheadbehind git-remotebranch git-tagname)
+POWERLEVEL9K_VCS_GIT_ICON=''
+POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON="↑"
+POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON="↓"
+POWERLEVEL9K_VCS_UNSTAGED_ICON="●"
 
 [[ -e /usr/share/powerlevel9k/powerlevel9k.zsh-theme ]] && source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
 [[ -e /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme ]] && source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
