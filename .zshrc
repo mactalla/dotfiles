@@ -136,12 +136,13 @@ zstyle ':vcs_info:*' disable-patterns "$HOME/windows-dev(|/*)"
 
 #eval "$(chef shell-init zsh)"
 #export BERKSHELF_CHEF_CONFIG=~/src/chef/chef-repo/.chef/knife.rb
-export BERKSHELF_PATH=/opt/tera-chef
+#export BERKSHELF_PATH=/opt/tera-chef
 #export CHEF_VERSION='14'
 export CHEF_VERSION='14.12.9'
 export AWS_DEFAULT_PROFILE='corp'
 export AWS_PROFILE='corp'
 #export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+export VAGRANT_VMWARE_CLONE_DIRECTORY="$HOME/.vagrant.d/clones"
 
 function workon() {
     export DEST_MACHINE=$@
@@ -165,4 +166,6 @@ function drun() {
 }
 
 [[ $SSH_AGENT_PID ]] || eval `ssh-agent`
+
+
 
