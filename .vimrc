@@ -9,7 +9,11 @@ set ts=4
 set et
 set ls=2
 set ruler
-set clipboard=unnamedplus
+if system('uname -s') == "Darwin\n"
+  set clipboard=unnamed " macOS
+else
+  set clipboard=unnamedplus " Linux
+endif
 
 " scroll offset - move the buffer before the cursor reaches the top/bottom.
 set so=7
