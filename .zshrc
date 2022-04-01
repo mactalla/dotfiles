@@ -112,6 +112,7 @@ POWERLEVEL9K_VCS_UNSTAGED_ICON="●"
 
 [[ -e /usr/share/powerlevel9k/powerlevel9k.zsh-theme ]] && source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
 [[ -e /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme ]] && source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+[[ -e /opt/homebrew/opt/powerlevel9k/powerlevel9k.zsh-theme ]] && source /opt/homebrew/opt/powerlevel9k/powerlevel9k.zsh-theme
 
 [[ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -e /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -169,3 +170,17 @@ function drun() {
 
 
 
+alias mcd_log="AWS_PROFILE=dev-engineer aws logs tail --follow /ecs/mcd/app"
+alias mcd_log_prod="AWS_PROFILE=prod-engineer aws logs tail --follow /ecs/mcd/app"
+
+alias mcd_api_log="AWS_PROFILE=dev-engineer aws logs tail --follow /ecs/mcdapi/app"
+alias mcd_api_log_prod="AWS_PROFILE=prod-engineer aws logs tail --follow /ecs/mcdapi/app"
+
+[[ -e "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
+
+[[ -e "$HOME/.local/bin" ]] && export PATH="$PATH:$HOME/.local/bin"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+export NOOM_PYPI_URL=$(AWS_PROFILE=dev-engineer aws ssm get-parameter --name /pypi/PYPI_SHARED_READONLY_URL --with-decryption --output text --query Parameter.Value)
+export PIP_INDEX_URL="$NOOM_PYPI_URL"
