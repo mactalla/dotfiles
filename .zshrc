@@ -57,7 +57,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( colored-man-pages command-not-found git sudo )
+plugins=( colored-man-pages command-not-found git sudo dotenv )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -140,8 +140,8 @@ zstyle ':vcs_info:*' disable-patterns "$HOME/windows-dev(|/*)"
 #export BERKSHELF_PATH=/opt/tera-chef
 #export CHEF_VERSION='14'
 export CHEF_VERSION='14.12.9'
-export AWS_DEFAULT_PROFILE='corp'
-export AWS_PROFILE='corp'
+#export AWS_DEFAULT_PROFILE='dev-engineer'
+#export AWS_PROFILE='dev-engineer'
 #export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
 export VAGRANT_VMWARE_CLONE_DIRECTORY="$HOME/.vagrant.d/clones"
 
@@ -184,3 +184,19 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 export NOOM_PYPI_URL=$(AWS_PROFILE=dev-engineer aws ssm get-parameter --name /pypi/PYPI_SHARED_READONLY_URL --with-decryption --output text --query Parameter.Value)
 export PIP_INDEX_URL="$NOOM_PYPI_URL"
+
+prunebranches() {
+REBASE_TARGET=origin/HEAD
+for branch in $(git for-each-ref --format="%(refname:lstrip=2)" refs/heads/); do
+    git rebase "$REBASE_TARGET" "$branch" || git rebase --abort
+done
+}
+
+
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+# To explore:
+# autojump
+# fzf
+

@@ -16,7 +16,14 @@
     ls = log --pretty=format:%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn] --graph --decorate --date=short -n 15
     lsl = log --pretty=format:%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn] --graph --decorate --date=short
     ll = log --pretty=format:%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn] --decorate --numstat --date=local
-    prunebranches = !git branch --merged master | grep -v " master" | xargs -n1 git branch -d
+#    prunebranches = !for branch in $(git for-each-ref --format='%(refname:lstrip=2)' refs/heads/); do; \
+#                        echo "fixme" ; # git rebase origin/HEAD "$branch" || git rebase --abort; \
+#                    done; \
+#                    git branch --format='%(refname:lstrip=2)' --merged origin/HEAD | grep -v " master" | xargs -n1 git branch -d; \
+#                    }; \
+#                    f; \
+#                    unset f
+
     # Graph current working branch
     # Line 1  : short hash, date, relative date, branch/tag
     # Line 2  : first commit line (subject), author
@@ -43,6 +50,7 @@
             --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(white) %s %C(reset)- %C(green)%an %C(red)%d' --abbrev-commit
 	whatadded = log --all --follow --diff-filter=A
     bfg = "!java -jar ${HOME}/bin/bfg.jar"
+    start = !git diff --quiet && git fetch && git switch -c $1 && git reset --hard origin/HEAD && :
 [fetch]
     prune = true
 [rebase]
