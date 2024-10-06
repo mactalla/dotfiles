@@ -169,22 +169,15 @@ function drun() {
 
 [[ $SSH_AGENT_PID ]] || eval `ssh-agent`
 
-
-
-alias mcd_log="AWS_PROFILE=dev-engineer aws logs tail --follow /ecs/mcd/app"
-alias mcd_log_prod="AWS_PROFILE=prod-engineer aws logs tail --follow /ecs/mcd/app"
-
-alias mcd_api_log="AWS_PROFILE=dev-engineer aws logs tail --follow /ecs/mcdapi/app"
-alias mcd_api_log_prod="AWS_PROFILE=prod-engineer aws logs tail --follow /ecs/mcdapi/app"
-
 [[ -e "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
-
 [[ -e "$HOME/.local/bin" ]] && export PATH="$PATH:$HOME/.local/bin"
+[[ -e "/opt/homebrew/bin" ]] && export PATH="/opt/homebrew/bin:$PATH"
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-export NOOM_PYPI_URL=$(AWS_PROFILE=dev-engineer aws ssm get-parameter --name /pypi/PYPI_SHARED_READONLY_URL --with-decryption --output text --query Parameter.Value)
-export PIP_INDEX_URL="$NOOM_PYPI_URL"
+# export NOOM_PYPI_URL=$(AWS_PROFILE=dev-engineer aws ssm get-parameter --name /pypi/PYPI_SHARED_READONLY_URL --with-decryption --output text --query Parameter.Value)
+# export PIP_INDEX_URL="$NOOM_PYPI_URL"
 
 prunebranches() {
 REBASE_TARGET=origin/HEAD
