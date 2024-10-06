@@ -15,6 +15,13 @@ for file in bin/*; do
   [[ -e ~/${file} ]] || (echo "Linking ${file}" && ln -s $(pwd)/${file} ~/bin/${file#*/})
 done
 
+mkdir -p ~/.config/karabiner
+for file in config/karabiner/*; do
+  [[ -e ~/.${file} ]] || (echo "Linking ${file}" && ln -s $(pwd)/${file} ~/.${file})
+done
+
+# FIXME: defaults write -g ApplePressAndHoldEnabled -bool false
+
 # Install Nerd Fonts
 function install_font() {
     fc-list | ag "${1}.*Nerd Font.*ttf" > /dev/null && return 0
