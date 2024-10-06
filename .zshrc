@@ -2,6 +2,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 DEFAULT_USER=`whoami`
 
@@ -57,9 +58,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( colored-man-pages command-not-found git sudo dotenv )
-
-source $ZSH/oh-my-zsh.sh
+plugins=( colored-man-pages command-not-found git sudo dotenv docker )
 
 # User configuration
 
@@ -109,6 +108,8 @@ POWERLEVEL9K_VCS_GIT_ICON=''
 POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON="↑"
 POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON="↓"
 POWERLEVEL9K_VCS_UNSTAGED_ICON="●"
+
+source $ZSH/oh-my-zsh.sh
 
 [[ -e /usr/share/powerlevel9k/powerlevel9k.zsh-theme ]] && source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
 [[ -e /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme ]] && source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
