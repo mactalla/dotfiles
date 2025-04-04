@@ -188,6 +188,7 @@ done
 
 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+[ -f /usr/share/autojump/autojump.zsh ] && . /usr/share/autojump/autojump.zsh
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # To explore:
