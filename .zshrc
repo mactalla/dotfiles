@@ -128,7 +128,7 @@ function asan38() {
 #export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
 export CTEST_OUTPUT_ON_FAILURE=true
 export CMAKE_GENERATOR=Ninja
-[[ -d /Applications ]] && export CMAKE_GENERATOR=Xcode
+# [[ -d /Applications ]] && export CMAKE_GENERATOR=Xcode
 
 alias please='sudo $(fc -ln -1)'
 
@@ -194,3 +194,5 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 # autojump
 # fzf
 
+export ANSIBLE_INVENTORY=/Users/afuller/src/metal-internal-workflows/inventory/ci/ci.yaml
+alias ansible-hosts='ansible-inventory --list | jq'
